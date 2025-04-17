@@ -3,25 +3,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Crop Yield Prediction</title>
+    <title>AgroYield</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .bg-dark-light {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        .form-control-dark {
-            background-color: #333;
-            border: 1px solid #666;
-            color: white;
-        }
-    </style>
+    <link rel="icon" href="{{ url_for('static', filename='images/wheat.png') }}" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container py-5">
-        <h1 class="text-center mb-4s" style="color: black;">Crop Yield Prediction Per Country</h1>
-        <div class="card bg-dark-light text-white border-0">
+    <div class="outer">
+        <h1 class="outlook">AgroYield</h1>
+        <div class="card-container">
             <div class="card-body">
-                <h2 class="text-center" style="color: white;">Input All Features Here</h2>
                 <form action="/predict" method="post">
                     <div class="row g-3">
                         <div class="col-md-6">
@@ -48,15 +43,16 @@
                             <label for="Item" class="form-label">Crop Type</label>
                             <input type="text" class="form-control form-control-dark" name="Item">
                         </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-danger btn-lg mt-3 w-100">Predict</button>
-                        </div>
+                        <div class="button-container">
+                            <button type="submit" class="predict-btn">Predict</button>
+                          </div>
+                        
                     </div>
                 </form>
                 {% if prediction %}
-                    <div class="text-center mt-4">
+                    <div class="prediction-result">
                         <h2>Predicted Yield:</h2>
-                        <h3 class="text-info">{{ prediction }} Tonnes</h3>
+                        <h3 class="text-info" style="color: black;">{{ prediction }} Tonnes</h3>
                     </div>
                 {% endif %}
             </div>

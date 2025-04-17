@@ -1,0 +1,120 @@
+.outer {
+    background-image: url('/static/images/view.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    width: 100vw; 
+    height: 100vh; 
+    margin: 0; 
+    padding: 0; 
+}
+
+.bg-dark-light {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border-radius: 15px;
+}
+
+.form-control-dark {
+    background-color: #333 !important;
+    border: 1px solid #666 !important;
+    color: white !important;
+}
+
+.form-control-dark::placeholder {
+    color: #ccc;
+}
+
+.text-white {
+    color: white !important;
+}
+
+h1, h2 {
+    color: black;
+}
+
+.card-body h2 {
+    color: white;
+}
+
+
+.outlook{
+    font-family: "Lora", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+    padding-bottom: 0;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 550px;
+    width: 850px;
+    margin: 0 auto; /* ✅ This centers it horizontally */
+}
+
+/* Container to center the button */
+.button-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 0 20px;
+  }
+  
+  /* Custom Predict Button Styling */
+  .predict-btn {
+    background-color: oklch(85.5% 0.138 181.071); /* Bootstrap's btn-danger color */
+    color:oklch(25.7% 0.09 281.288);
+    font-size: 1.25rem; /* Equivalent to btn-lg */
+    margin-top: 1rem; /* mt-3 */
+    width: 100%; /* w-100 */
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .predict-btn:hover {
+    background-color: oklch(84.5% 0.143 164.978); /* Darker red on hover */
+  }
+  
+  .prediction-result h2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;     
+    text-align: center;   
+    color: black;   
+  }
+  
+  .prediction-result h3{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;     
+    text-align: center;   
+    color: black;   
+  }
+
+
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .prediction-result {
+    animation: fadeIn 0.8s ease-in-out;
+    animation-delay: 0.5s;
+  }
+  
