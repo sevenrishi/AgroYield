@@ -13,11 +13,14 @@
     background-color: rgba(0, 0, 0, 0.5) !important;
     border-radius: 15px;
 }
+.outlook{
+  font-size: 3.3rem;
+}
 
 .form-control-dark {
-    background-color: #333 !important;
+    background-color: inherit !important;
     border: 1px solid #666 !important;
-    color: white !important;
+    color: inherit !important;
 }
 
 .form-control-dark::placeholder {
@@ -54,7 +57,7 @@ h1, h2 {
     align-items: center;
     height: 550px;
     width: 850px;
-    margin: 0 auto; /* ✅ This centers it horizontally */
+    margin: 0 auto; 
 }
 
 /* Container to center the button */
@@ -79,7 +82,7 @@ h1, h2 {
   }
   
   .predict-btn:hover {
-    background-color: oklch(84.5% 0.143 164.978); /* Darker red on hover */
+    background-color: oklch(84.5% 0.143 164.978); 
   }
 
   .prediction-result h1{
@@ -95,7 +98,9 @@ h1, h2 {
     flex-direction: column;
     justify-content: center; 
     align-items: center;     
-    text-align: center;     
+    text-align: center;  
+    color: oklch(41% 0.159 10.272);   
+    margin: 20px;
   }
   
   .prediction-result h3{
