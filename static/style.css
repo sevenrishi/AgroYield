@@ -16,16 +16,36 @@
 .outlook{
   font-size: 3.3rem;
 }
-
 .form-control-dark {
-    background-color: inherit !important;
-    border: 1px solid #666 !important;
-    color: inherit !important;
+    background-color: #6ee7b7 !important;
+    color: #111 !important;
 }
 
-.form-control-dark::placeholder {
-    color: #ccc;
+
+.form-label{
+    font-weight: 500;
 }
+/* Placeholder text color */
+.form-control-dark::placeholder {
+    color: #888;
+}
+
+/* Fix input background on focus */
+.form-control-dark:focus {
+    background-color: #a7f3d0!important;
+    color: #111 !important;
+    outline: none;
+    box-shadow: none;
+}
+
+/* Prevent browser autofill from changing background */
+.form-control-dark:-webkit-autofill {
+    background-color:#6ee7b7 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #6ee7b7 inset !important;
+    -webkit-text-fill-color: #111 !important;
+    transition: background-color 9999s ease-out;
+}
+
 
 .text-white {
     color: white !important;
@@ -69,8 +89,8 @@ h1, h2 {
   
   /* Custom Predict Button Styling */
   .predict-btn {
-    background-color: oklch(85.5% 0.138 181.071); /* Bootstrap's btn-danger color */
-    color:oklch(25.7% 0.09 281.288);
+    background-color: #451a03; /* Bootstrap's btn-danger color */
+    color:white;
     font-size: 1.25rem; /* Equivalent to btn-lg */
     margin-top: 1rem; /* mt-3 */
     width: 100%; /* w-100 */
@@ -82,7 +102,7 @@ h1, h2 {
   }
   
   .predict-btn:hover {
-    background-color: oklch(84.5% 0.143 164.978); 
+    background-color: #713f12; 
   }
 
   .prediction-result h1{
