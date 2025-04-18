@@ -131,7 +131,9 @@ h1, h2 {
     text-align: center;   
   }
 
-
+.prediction-text{
+    color: white !important;
+}
   
   @keyframes fadeIn {
     0% {
