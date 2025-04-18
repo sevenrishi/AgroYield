@@ -17,7 +17,6 @@
         <h1 class="outlook">AgroYield</h1>
         <div class="card-container">
             <div class="card-body">
-<<<<<<< HEAD
             <form action="/predict" method="post">
                 <div class="row g-3">
                 <div class="col-md-6">
@@ -68,51 +67,6 @@
                 <h1 style="color: darkred;">!!  {{ error }}</h1>
                 </div>
             {% endif %}
-=======
-                <form action="/predict" method="post">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label for="Year" class="form-label">Year</label>
-                            <input type="number" class="form-control form-control-dark" name="Year" value="2013" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="average_rain_fall_mm_per_year" class="form-label">Average Rainfall (mm/year)</label>
-                            <input type="number" class="form-control form-control-dark" name="average_rain_fall_mm_per_year" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="pesticides_tonnes" class="form-label">Pesticides (tonnes)</label>
-                            <input type="number" class="form-control form-control-dark" name="pesticides_tonnes" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="avg_temp" class="form-label">Average Temperature (°C)</label>
-                            <input type="number" class="form-control form-control-dark" name="avg_temp" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="Area" class="form-label">Country</label>
-                            <input type="text" class="form-control form-control-dark" name="Area" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="Item" class="form-label">Crop Type</label>
-                            <input type="text" class="form-control form-control-dark" name="Item" required>
-                        </div>
-                        <div class="button-container">
-                            <button type="submit" class="predict-btn">Predict</button>
-                          </div>
-                        
-                    </div>
-                </form>
-                {% if prediction %}
-                    <div class="prediction-result">
-                        <h2>Predicted Yield:</h2>
-                        <h3 class="text-info" style="color: oklch(95.1% 0.026 236.824) !important;">{{ prediction }} Tonnes</h3>
-                    </div>
-                {% endif %}
-                {% if error %}
-                    <div class="prediction-result">
-                        <h1 style="color: darkred;">!!  {{ error }}</h1>
-                    </div>
-                {% endif %}
->>>>>>> ff5052164d94d1b4feca35b6e1b4898377a409a4
             </div>
         </div>
         </div>
