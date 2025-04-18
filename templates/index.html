@@ -17,52 +17,59 @@
         <h1 class="outlook">AgroYield</h1>
         <div class="card-container">
             <div class="card-body">
-                <form action="/predict" method="post">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label for="Year" class="form-label">Year</label>
-                            <input type="number" class="form-control form-control-dark" name="Year" value="2013" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="average_rain_fall_mm_per_year" class="form-label">Average Rainfall (mm/year)</label>
-                            <input type="number" class="form-control form-control-dark" name="average_rain_fall_mm_per_year" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="pesticides_tonnes" class="form-label">Pesticides (tonnes)</label>
-                            <input type="number" class="form-control form-control-dark" name="pesticides_tonnes" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="avg_temp" class="form-label">Average Temperature (°C)</label>
-                            <input type="number" class="form-control form-control-dark" name="avg_temp" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="Area" class="form-label">Country</label>
-                            <input type="text" class="form-control form-control-dark" name="Area" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="Item" class="form-label">Crop Type</label>
-                            <input type="text" class="form-control form-control-dark" name="Item" required>
-                        </div>
-                        <div class="button-container">
-                            <button type="submit" class="predict-btn">Predict</button>
-                          </div>
-                        
-                    </div>
-                </form>
-                {% if prediction %}
-                    <div class="prediction-result">
-                        <h2>Predicted Yield:</h2>
-                        <h3 class="text-info" style="color: black;">{{ prediction }} Tonnes</h3>
-                    </div>
-                {% endif %}
-                {% if error %}
-                    <div class="prediction-result">
-                        <h1 style="color: darkred;">!!  {{ error }}</h1>
-                    </div>
-                {% endif %}
+            <form action="/predict" method="post">
+                <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="Year" class="form-label">Year</label>
+                    <input type="number" class="form-control form-control-dark" name="Year" value="{{ request.form.get('Year', '2025') }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="average_rain_fall_mm_per_year" class="form-label">Average Rainfall (mm/year)</label>
+                    <input type="number" class="form-control form-control-dark" name="average_rain_fall_mm_per_year" step="any" value="{{ request.form.get('average_rain_fall_mm_per_year', '1180') }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="pesticides_tonnes" class="form-label">Pesticides (tonnes)</label>
+                    <input type="number" class="form-control form-control-dark" name="pesticides_tonnes" step="any" value="{{ request.form.get('pesticides_tonnes', '61702') }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="avg_temp" class="form-label">Average Temperature (°C)</label>
+                    <input type="number" class="form-control form-control-dark" name="avg_temp" step="any" value="{{ request.form.get('avg_temp', '26') }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="Area" class="form-label">Country</label>
+                    <select class="form-control form-control-dark" name="Area" required>
+                    {% for country in ['Albania', 'Algeria', 'Angola', 'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Belarus', 'Belgium', 'Botswana', 'Brazil', 'Bulgaria', 'Burkina Faso', 'Burundi', 'Cameroon', 'Canada', 'Central African Republic', 'Chile', 'Colombia', 'Croatia', 'Denmark', 'Dominican Republic', 'Ecuador', 'Egypt', 'El Salvador', 'Eritrea', 'Estonia', 'Finland', 'France', 'Germany', 'Ghana', 'Greece', 'Guatemala', 'Guinea', 'Guyana', 'Haiti', 'Honduras', 'Hungary', 'India', 'Indonesia', 'Iraq', 'Ireland', 'Italy', 'Jamaica', 'Japan', 'Kazakhstan', 'Kenya', 'Latvia', 'Lebanon', 'Lesotho', 'Libya', 'Lithuania', 'Madagascar', 'Malawi', 'Malaysia', 'Mali', 'Mauritania', 'Mauritius', 'Mexico', 'Montenegro', 'Morocco', 'Mozambique', 'Namibia', 'Nepal', 'Netherlands', 'New Zealand', 'Nicaragua', 'Niger', 'Norway', 'Pakistan', 'Papua New Guinea', 'Peru', 'Poland', 'Portugal', 'Qatar', 'Romania', 'Rwanda', 'Saudi Arabia', 'Senegal', 'Slovenia', 'South Africa', 'Spain', 'Sri Lanka', 'Sudan', 'Suriname', 'Sweden', 'Switzerland', 'Tajikistan', 'Thailand', 'Tunisia', 'Turkey', 'Uganda', 'Ukraine', 'United Kingdom', 'Uruguay', 'Zambia', 'Zimbabwe'] %}
+                        <option value="{{ country }}" {% if request.form.get('Area', 'India') == country %}selected{% endif %}>{{ country }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="Item" class="form-label">Crop Type</label>
+                    <select class="form-control form-control-dark" name="Item" required>
+                    {% for crop in ['Maize', 'Potatoes', 'Rice, Paddy', 'Sorghum', 'Soybeans', 'Wheat', 'Cassava', 'Sweet Potatoes', 'Plantains and Others', 'Yams'] %}
+                        <option value="{{ crop }}" {% if request.form.get('Item', 'Rice, Paddy') == crop %}selected{% endif %}>{{ crop }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="predict-btn">Predict</button>
+                </div>
+                </div>
+            </form>
+            {% if prediction %}
+                <div class="prediction-result">
+                <h2>Predicted Yield:</h2>
+                <h3 class="text-info" style="color: black;">{{ prediction / 10 }} Kg/Hectare</h3>
+                </div>
+            {% endif %}
+            {% if error %}
+                <div class="prediction-result">
+                <h1 style="color: darkred;">!!  {{ error }}</h1>
+                </div>
+            {% endif %}
             </div>
         </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
