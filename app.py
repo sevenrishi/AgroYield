@@ -20,14 +20,23 @@ def predict():
         average_rain_fall_mm_per_year = request.form['average_rain_fall_mm_per_year']
         pesticides_tonnes = request.form['pesticides_tonnes']
         avg_temp = request.form['avg_temp']
-        Area = request.form['Area']
-        Item  = request.form['Item']
+        Area = request.form['Area'].lower()
+        Item  = request.form['Item'].lower()
 
         features = np.array([[Year,average_rain_fall_mm_per_year,pesticides_tonnes,avg_temp,Area,Item]],dtype=object)
-        transformed_features = preprocesser.transform(features)
-        prediction = dtr.predict(transformed_features).reshape(1,-1)
+        try:
+            transformed_features = preprocesser.transform(features)
+            prediction = dtr.predict(transformed_features).reshape(1, -1)
+            return render_template('index.html', prediction=prediction[0][0])
 
-        return render_template('index.html',prediction = prediction[0][0])
+        except ValueError as e:
+            if "column 0" in str(e):
+                error_message = "Enter a valid country name."
+            elif "column 1" in str(e):
+                error_message = "Enter a valid crop type."
+            else:
+                error_message = "An error occurred. Please check your input values."
+            return render_template('index.html', error=error_message)
 
 if __name__=="__main__":
     app.run(debug=True)
